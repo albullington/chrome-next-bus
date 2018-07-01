@@ -1,0 +1,14 @@
+{
+  "manifest_version": 2, 
+  "name": "NextBus Times",
+  "description": "This extension will show me the local bus times closest to my house so I know when to leave.",
+  "version": "1.0", 
+  "author": "Amanda Bullington",
+
+  "browser_action": { 
+    "default_title": "Local bus times", 
+    "default_popup": "popup.html"
+  },
+
+  "permissions": ["activeTab"]
+}
