@@ -5,7 +5,6 @@ const stopTag = '3930';
 
 if (!('fetch' in window)) {
   console.log('Fetch API not found, try including polyfill');
-  return;
 }
 
 const logResult = (result) => {
@@ -27,10 +26,19 @@ const readResponseAsJSON = (response) => {
   return response.json();
 }
 
+const appendResponseToHTML = (response) => {
+  const nextBus = response.predictions.direction.prediction[0].minutes;
+  console.log(nextBus, 'next bus');
+
+  const list = document.getElementById('next-bus');
+  list.innerHTML = `<ul>Bus ${routeTag}: ${nextBus} minute(s)</ul>`;
+}
+
 const fetchJSON = (pathToResource) => {
   fetch(pathToResource)
     .then(validateResponse)
     .then(readResponseAsJSON)
+    .then(appendResponseToHTML)
     .then(logResult)
     .catch(logError)
 }
